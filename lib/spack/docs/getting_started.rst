@@ -283,7 +283,7 @@ valid flags are ``cflags``, ``cxxflags``, ``fflags``, ``cppflags``,
          cxx: /usr/local/bin/icpc-15.0.024-beta
          f77: /usr/local/bin/ifort-15.0.024-beta
          fc: /usr/local/bin/ifort-15.0.024-beta
-       parameters:
+       flags
          cppflags: -O3 -fPIC
        spec: intel@15.0.0:
 
@@ -499,6 +499,13 @@ compilers:
    > or ``-gxx-name`` compiler option to specify the path to the version of
    > ``gcc`` or ``g++`` that you want to use.
 
+#. At run time, the loader will need to know where the GCC libraries reside.
+If the library directory is not in the default library search path, you will
+need to specify it. This can be accomplished by setting LD_LIBRARY_PATH to
+the GCC lib directory or by loading the appropriate module that does so. You
+can also supply the lib directory to the rpath option of your ldflags in
+``compilers.yaml`` (i.e., ldflags: -Wl,-rpath,<path_to_GCC>/lib)
+
 Intel compilers may therefore be configured in one of two ways with
 Spack: using modules, or using compiler flags.
 
@@ -531,9 +538,6 @@ configuration in ``compilers.yaml`` illustrates this technique:
    the "native" Intel version number and the GNU compiler it is
    targeting.
 
-.. warning::
-
-   This solution has not yet been tested.  Details may vary.
 
 """"""""""""""""""""""""""
 Command Line Configuration
@@ -564,17 +568,15 @@ flags to the ``icc`` command:
            operating_system: centos7
            paths:
              cc: /opt/intel-15.0.24/bin/icc-15.0.24-beta
-             cflags: -gcc-name /home2/rpfische/spack2/opt/spack/linux-centos7-x86_64/gcc-4.9.3-iy4rw.../bin/gcc
              cxx: /opt/intel-15.0.24/bin/icpc-15.0.24-beta
-             cxxflags: -gxx-name /home2/rpfische/spack2/opt/spack/linux-centos7-x86_64/gcc-4.9.3-iy4rw.../bin/g++
              f77: /opt/intel-15.0.24/bin/ifort-15.0.24-beta
              fc: /opt/intel-15.0.24/bin/ifort-15.0.24-beta
-             fflags: -gcc-name /home2/rpfische/spack2/opt/spack/linux-centos7-x86_64/gcc-4.9.3-iy4rw.../bin/gcc
+           flags:
+             cflags: -gcc-name=/home2/rpfische/spack2/opt/spack/linux-centos7-x86_64/gcc-4.9.3-iy4rw.../bin/gcc
+             cxxflags: -gxx-name=/home2/rpfische/spack2/opt/spack/linux-centos7-x86_64/gcc-4.9.3-iy4rw.../bin/g++
+             fflags: -gcc-name=/home2/rpfische/spack2/opt/spack/linux-centos7-x86_64/gcc-4.9.3-iy4rw.../bin/gcc
+             ldflags: -Wl,-rpath,/home2/rpfische/spack2/opt/spack/linux-centos7-x86_64/gcc-4.9.3-iy4rw.../lib
            spec: intel@15.0.24.4.9.3
-
-.. warning::
-
-   This solution has not yet been tested.  Details may vary.
 
 
 ^^^
