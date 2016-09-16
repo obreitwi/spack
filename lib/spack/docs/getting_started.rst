@@ -500,11 +500,11 @@ compilers:
    > ``gcc`` or ``g++`` that you want to use.
 
 #. At run time, the loader will need to know where the GCC libraries reside.
-If the library directory is not in the default library search path, you will
-need to specify it. This can be accomplished by setting LD_LIBRARY_PATH to
-the GCC lib directory or by loading the appropriate module that does so. You
-can also supply the lib directory to the rpath option of your ldflags in
-``compilers.yaml`` (i.e., ldflags: -Wl,-rpath,<path_to_GCC>/lib)
+   If the library directory is not in the default library search path, you will
+   need to specify it. This can be accomplished by setting LD_LIBRARY_PATH to
+   the GCC lib directory or by loading the appropriate module that does so. You
+   can also supply the lib directory to the rpath option of your ldflags in
+   ``compilers.yaml`` (i.e., ldflags: -Wl,-rpath,<path_to_GCC>/lib64)
 
 Intel compilers may therefore be configured in one of two ways with
 Spack: using modules, or using compiler flags.
@@ -575,7 +575,7 @@ flags to the ``icc`` command:
              cflags: -gcc-name=/home2/rpfische/spack2/opt/spack/linux-centos7-x86_64/gcc-4.9.3-iy4rw.../bin/gcc
              cxxflags: -gxx-name=/home2/rpfische/spack2/opt/spack/linux-centos7-x86_64/gcc-4.9.3-iy4rw.../bin/g++
              fflags: -gcc-name=/home2/rpfische/spack2/opt/spack/linux-centos7-x86_64/gcc-4.9.3-iy4rw.../bin/gcc
-             ldflags: -Wl,-rpath,/home2/rpfische/spack2/opt/spack/linux-centos7-x86_64/gcc-4.9.3-iy4rw.../lib
+             ldflags: -Wl,-rpath,/home2/rpfische/spack2/opt/spack/linux-centos7-x86_64/gcc-4.9.3-iy4rw.../lib64
            spec: intel@15.0.24.4.9.3
 
 
