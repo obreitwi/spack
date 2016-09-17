@@ -129,7 +129,7 @@ required before Spack can work in a practical sense.  Read on...
 ----------------------
 Compiler configuration
 ----------------------
-
+LD_L
 Spack has the ability to build packages with multiple compilers and
 compiler versions. Spack searches for compilers on your machine
 automatically the first time it is run. It does this by inspecting
@@ -501,10 +501,10 @@ compilers:
 
 #. At run time, the loader will need to know where the GCC libraries reside.
    If the library directory is not in the default library search path, you will
-   need to specify it. This can be accomplished by setting LD_LIBRARY_PATH to
-   the GCC lib directory or by loading the appropriate module that does so. You
-   can also supply the lib directory to the rpath option of your ldflags in
-   ``compilers.yaml`` (i.e., ldflags: -Wl,-rpath,<path_to_GCC>/lib64)
+   need to specify it. This can be accomplished by setting ``LD_LIBRARY_PATH`` to
+   the GCC ``lib`` directory or by loading the appropriate module that does so. You
+   can also supply the ``lib`` directory to the rpath option of your ldflags in
+   ``compilers.yaml`` (i.e., ``ldflags: -Wl,-rpath,<path_to_GCC>/lib64``)
 
 Intel compilers may therefore be configured in one of two ways with
 Spack: using modules, or using compiler flags.
