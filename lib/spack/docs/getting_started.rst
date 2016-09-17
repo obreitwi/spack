@@ -129,7 +129,7 @@ required before Spack can work in a practical sense.  Read on...
 ----------------------
 Compiler configuration
 ----------------------
-LD_L
+
 Spack has the ability to build packages with multiple compilers and
 compiler versions. Spack searches for compilers on your machine
 automatically the first time it is run. It does this by inspecting
